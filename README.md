@@ -39,6 +39,15 @@ Jumlah Host pada Fukurou adalah 200 host
 | C | Cipher | 10.38.0.2 | 255.255.252.0 |  |
 | D | FOOSHA | 10.38.7.145 | 255.255.255.252 | /30 |
 | D | WATER7 | 10.38.7.146 | 255.255.255.252 |  |
+| E | FOOSHA | 10.38.7.149 | 255.255.255.252 | /30 |
+| E | GUANHAO | 10.38.7.150 | 255.255.255.252 |  |
+| F | GUANHAO | 10.38.6.1 | 255.255.255.0 | /24 |
+| F | Elena | 10.38.6.2 | 255.255.255.0 |  |
+| G | GUANHAO | 10.38.7.137 | 255.255.255.248 | /29 |
+| G | Jorge | 10.38.7.138 | 255.255.255.248 |  |
+| G | Maingaete | 10.38.7.139 | 255.255.255.248 |  |
+| H | GUANHAO | 10.38.4.1 | 255.255.254.0	 | /23 |
+| H | Fukurou | 10.38.4.2 | 255.255.254.0	 |  |
 
 ### C. Setelah melakukan subnetting, Kalian juga diharuskan melakukan Routing agar setiap perangkat pada jaringan tersebut dapat terhubung.
 
