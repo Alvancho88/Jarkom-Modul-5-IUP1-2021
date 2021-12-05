@@ -187,6 +187,8 @@ iface eth0 inet static
 	gateway 10.38.6.2
 ```
 
+## C. Setelah melakukan subnetting, Kalian juga diharuskan melakukan Routing agar setiap perangkat pada jaringan tersebut dapat terhubung.
+
 ### Routing
 
 #### FOOSHA
@@ -215,9 +217,6 @@ route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.38.7.145
 
 route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.38.7.149
 ```
-
-
-## C. Setelah melakukan subnetting, Kalian juga diharuskan melakukan Routing agar setiap perangkat pada jaringan tersebut dapat terhubung.
 
 ## D. Tugas berikutnya adalah memberikan ip pada subnet Blueno, Cipher, Fukurou, dan Elena secara dinamis menggunakan bantuan DHCP server. Kemudian kalian ingat bahwa kalian harus setting DHCP Relay pada router yang menghubungkannya.
 
