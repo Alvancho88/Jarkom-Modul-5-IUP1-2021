@@ -255,6 +255,36 @@ apt-get install isc-dhcp-server -y
 INTERFACES="eth0"
 ```
 
+#### nano dhcpd.conf
+```
+subnet 10.38.7.0 netmask 255.255.255.128 {
+    range 10.38.7.10 10.38.7.100;
+    option routers 10.38.1.1;
+    option broadcast-address 10.38.1.255;
+    option domain-name-servers 10.38.2.2;
+    default-lease-time 360;
+    max-lease-time 7200;
+}
+
+subnet 10.38.3.0 netmask 255.255.255.0 {
+    range 10.38.3.30 10.38.3.50;
+    option routers 10.38.3.1;
+    option broadcast-address 10.38.3.255;
+    option domain-name-servers 10.38.2.2;
+    default-lease-time 720;
+    max-lease-time 7200;
+}
+
+subnet 10.38.2.0 netmask 255.255.255.0 {
+        option routers 10.38.2.1;
+}
+
+host Skypie {
+    hardware ethernet 66:f9:90:6c:ae:ae;
+    fixed-address 10.38.3.69;
+}
+```
+
 ### Foosha (DHCP Relay)
 
 ##### nano config.sh
