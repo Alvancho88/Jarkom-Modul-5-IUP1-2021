@@ -30,11 +30,15 @@ Jumlah Host pada Fukurou adalah 200 host
 
 | Subnet | Node | IP | Subnet Mask | Length |
 | --- | --- | --- | --- | --- |
-| A1 | Pucci | 10.38.27.1 | 255.255.255.128 | /25 |
-| A1 | Jipangu | 10.38.27.2 | 255.255.255.128 |  |
-| A2 | Pucci | 10.38.0.1 | 255.255.248.0 | /21 |
-| A2 | Courtyard | 10.38.0.2 | 255.255.248.0 |  |
-| A2 | Calmbelt | 10.38.0.3 | 255.255.248.0 |  |
+| A | WATER7 | 10.38.7.1 | 255.255.255.128 | /25 |
+| A | Blueno | 10.38.7.2 | 255.255.255.128 |  |
+| B | WATER7 | 10.38.7.129 | 255.255.255.248 | /29 |
+| B | Doriki | 10.38.7.130 | 255.255.255.248 |  |
+| B | Jipangu | 10.38.7.131 | 255.255.255.248 |  |
+| C | WATER7 | 10.38.0.1 | 255.255.252.0 | /22 |
+| C | Cipher | 10.38.0.2 | 255.255.252.0 |  |
+| D | FOOSHA | 10.38.7.145 | 255.255.255.252 | /30 |
+| D | WATER7 | 10.38.7.146 | 255.255.255.252 |  |
 
 ### C. Setelah melakukan subnetting, Kalian juga diharuskan melakukan Routing agar setiap perangkat pada jaringan tersebut dapat terhubung.
 
