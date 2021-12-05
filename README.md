@@ -24,17 +24,11 @@ Jumlah Host pada Fukurou adalah 200 host
 
 ### B. Karena kalian telah belajar subnetting dan routing, Luffy ingin meminta kalian untuk membuat topologi tersebut menggunakan teknik CIDR atau VLSM.
 
-Subnet Name	Needed Size	Allocated Size	Address	Mask	Dec Mask	Assignable Range	Broadcast
-C	701	1022	10.38.0.0	/22	255.255.252.0	10.38.0.1 - 10.38.3.254	10.38.3.255
-F	301	510	10.38.4.0	/23	255.255.254.0	10.38.4.1 - 10.38.5.254	10.38.5.255
-H	201	254	10.38.6.0	/24	255.255.255.0	10.38.6.1 - 10.38.6.254	10.38.6.255
-A	101	126	10.38.7.0	/25	255.255.255.128	10.38.7.1 - 10.38.7.126	10.38.7.127
-B	5	6	10.38.7.128	/29	255.255.255.248	10.38.7.129 - 10.38.7.134	10.38.7.135
-G	5	6	10.38.7.136	/29	255.255.255.248	10.38.7.137 - 10.38.7.142	10.38.7.143
-D	2	2	10.38.7.144	/30	255.255.255.252	10.38.7.145 - 10.38.7.146	10.38.7.147
-E	2	2	10.38.7.148	/30	255.255.255.252	10.38.7.149 - 10.38.7.150	10.38.7.151
-![image](https://user-images.githubusercontent.com/61174498/144734460-2d9fc209-72f1-4d81-9f09-de7ad18db8f8.png)
+![VLSM_Subnetting](https://user-images.githubusercontent.com/61174498/144734892-29fd30f0-6691-47c5-8e0e-2ed10c86dfd7.png)
 
+![Screenshot (10414)](https://user-images.githubusercontent.com/61174498/144734639-19c46d59-be52-4bcb-8175-d2b111b67827.png)
+
+![image](https://user-images.githubusercontent.com/61174498/144734636-4d93e064-7444-4f98-90eb-f84be47c3f19.png)
 
 ### C. Setelah melakukan subnetting, Kalian juga diharuskan melakukan Routing agar setiap perangkat pada jaringan tersebut dapat terhubung.
 
