@@ -22,13 +22,19 @@ Jumlah Host pada Elena adalah 300 host
 
 Jumlah Host pada Fukurou adalah 200 host
 
-### B. Karena kalian telah belajar subnetting dan routing, Luffy ingin meminta kalian untuk membuat topologi tersebut menggunakan teknik CIDR atau VLSM.
-
 ![VLSM_Subnetting](https://user-images.githubusercontent.com/61174498/144734892-29fd30f0-6691-47c5-8e0e-2ed10c86dfd7.png)
+
+### B. Karena kalian telah belajar subnetting dan routing, Luffy ingin meminta kalian untuk membuat topologi tersebut menggunakan teknik CIDR atau VLSM.
 
 ![Screenshot (10414)](https://user-images.githubusercontent.com/61174498/144734639-19c46d59-be52-4bcb-8175-d2b111b67827.png)
 
-![image](https://user-images.githubusercontent.com/61174498/144734636-4d93e064-7444-4f98-90eb-f84be47c3f19.png)
+| Subnet | Node | IP | Subnet Mask | Length |
+| --- | --- | --- | --- | --- |
+| A1 | Pucci | 10.38.27.1 | 255.255.255.128 | /25 |
+| A1 | Jipangu | 10.38.27.2 | 255.255.255.128 |  |
+| A2 | Pucci | 10.38.0.1 | 255.255.248.0 | /21 |
+| A2 | Courtyard | 10.38.0.2 | 255.255.248.0 |  |
+| A2 | Calmbelt | 10.38.0.3 | 255.255.248.0 |  |
 
 ### C. Setelah melakukan subnetting, Kalian juga diharuskan melakukan Routing agar setiap perangkat pada jaringan tersebut dapat terhubung.
 
