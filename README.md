@@ -33,6 +33,8 @@ B	5	6	10.38.7.128	/29	255.255.255.248	10.38.7.129 - 10.38.7.134	10.38.7.135
 G	5	6	10.38.7.136	/29	255.255.255.248	10.38.7.137 - 10.38.7.142	10.38.7.143
 D	2	2	10.38.7.144	/30	255.255.255.252	10.38.7.145 - 10.38.7.146	10.38.7.147
 E	2	2	10.38.7.148	/30	255.255.255.252	10.38.7.149 - 10.38.7.150	10.38.7.151
+![image](https://user-images.githubusercontent.com/61174498/144734460-2d9fc209-72f1-4d81-9f09-de7ad18db8f8.png)
+
 
 ### C. Setelah melakukan subnetting, Kalian juga diharuskan melakukan Routing agar setiap perangkat pada jaringan tersebut dapat terhubung.
 
