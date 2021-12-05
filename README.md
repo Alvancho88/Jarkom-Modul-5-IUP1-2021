@@ -49,7 +49,7 @@ Jumlah Host pada Fukurou adalah 200 host
 
 ### CONFIG NODE
 
-### FOOSHA
+#### FOOSHA
 ```
 auto eth0
 iface eth0 inet dhcp
@@ -65,7 +65,7 @@ address 10.38.7.149
 netmask 255.255.255.252
 ```
 
-### WATER7
+#### WATER7
 ```
 auto eth0
 iface eth0 inet static
@@ -90,7 +90,7 @@ iface eth3 inet static
   netmask 255.255.252.0
 ```
 
-### GUANHAO
+#### GUANHAO
 ```
 auto eth0
 iface eth0 inet static
@@ -115,44 +115,105 @@ iface eth3 inet static
   netmask 255.255.254.0
 ```
 
-### Blueno
+#### Blueno
+```
+auto eth0
+iface eth0 inet static
+	address 10.38.7.2
+	netmask 255.255.255.128
+	gateway 10.38.7.1
 ```
 
+#### Doriki
+```
+auto eth0
+iface eth0 inet static
+	address 10.38.7.130
+	netmask 255.255.255.248
+	gateway 10.38.7.129	
 ```
 
-### Doriki
+#### Jipangu
+```
+auto eth0
+iface eth0 inet static
+	address 10.38.7.131
+	netmask 255.255.255.248
+	gateway 10.38.7.129
 ```
 
+#### Cipher
+```
+auto eth0
+iface eth0 inet static
+	address 10.38.0.2
+	netmask 255.255.252.0
+	gateway 10.38.0.1
 ```
 
-### Jipangu
+#### Fukurou
+```
+auto eth0
+iface eth0 inet static
+	address 10.38.4.2
+	netmask 255.255.254.0
+	gateway 10.38.4.1
 ```
 
+#### Maingate
+```
+auto eth0
+iface eth0 inet static
+	address 10.38.7.139
+	netmask 255.255.255.248
+	gateway 10.38.7.137
 ```
 
-### Cipher
+#### Jorge
+```
+auto eth0
+iface eth0 inet static
+	address 10.38.7.138
+	netmask 255.255.255.248
+	gateway 10.38.7.137
 ```
 
+#### Elena
+```
+auto eth0
+iface eth0 inet static
+	address 10.38.6.2
+	netmask 255.255.255.0
+	gateway 10.38.6.2
 ```
 
-### Fukurou
+### Routing
+
+#### FOOSHA
+```
+# !/bin/sh
+
+route add -net 10.38.7.0 netmask 255.255.255.128 gw 10.38.7.146
+route add -net 10.38.7.128 netmask 255.255.255.248 gw 10.38.7.146
+route add -net 10.38.0.0 netmask 255.255.252.0 gw 10.38.7.146
+
+route add -net 10.38.6.0 netmask 255.255.255.0 gw 10.38.7.150
+route add -net 10.38.7.136 netmask 255.255.255.248 gw 10.38.7.150
+route add -net 10.38.4.0 netmask 255.255.254.0 gw 10.38.7.150
 ```
 
+#### WATER7
+```
+# !/bin/sh
+
+route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.38.7.145
 ```
 
-### Maingate
+#### GUANHAO
 ```
+# !/bin/sh
 
-```
-
-### Jorge
-```
-
-```
-
-### Elena
-```
-
+route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.38.7.149
 ```
 
 
