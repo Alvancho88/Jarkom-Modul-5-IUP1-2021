@@ -22,9 +22,19 @@ Jumlah Host pada Elena adalah 300 host
 
 Jumlah Host pada Fukurou adalah 200 host
 
-### B. Karena kalian telah belajar subnetting dan routing, Luffy ingin meminta kalian untuk membuat topologi tersebut menggunakan teknik CIDR atau VLSM. setelah melakukan subnetting,
+### B. Karena kalian telah belajar subnetting dan routing, Luffy ingin meminta kalian untuk membuat topologi tersebut menggunakan teknik CIDR atau VLSM.
 
-### C. Kalian juga diharuskan melakukan Routing agar setiap perangkat pada jaringan tersebut dapat terhubung.
+Subnet Name	Needed Size	Allocated Size	Address	Mask	Dec Mask	Assignable Range	Broadcast
+C	701	1022	10.38.0.0	/22	255.255.252.0	10.38.0.1 - 10.38.3.254	10.38.3.255
+F	301	510	10.38.4.0	/23	255.255.254.0	10.38.4.1 - 10.38.5.254	10.38.5.255
+H	201	254	10.38.6.0	/24	255.255.255.0	10.38.6.1 - 10.38.6.254	10.38.6.255
+A	101	126	10.38.7.0	/25	255.255.255.128	10.38.7.1 - 10.38.7.126	10.38.7.127
+B	5	6	10.38.7.128	/29	255.255.255.248	10.38.7.129 - 10.38.7.134	10.38.7.135
+G	5	6	10.38.7.136	/29	255.255.255.248	10.38.7.137 - 10.38.7.142	10.38.7.143
+D	2	2	10.38.7.144	/30	255.255.255.252	10.38.7.145 - 10.38.7.146	10.38.7.147
+E	2	2	10.38.7.148	/30	255.255.255.252	10.38.7.149 - 10.38.7.150	10.38.7.151
+
+### C. Setelah melakukan subnetting, Kalian juga diharuskan melakukan Routing agar setiap perangkat pada jaringan tersebut dapat terhubung.
 
 ### D. Tugas berikutnya adalah memberikan ip pada subnet Blueno, Cipher, Fukurou, dan Elena secara dinamis menggunakan bantuan DHCP server. Kemudian kalian ingat bahwa kalian harus setting DHCP Relay pada router yang menghubungkannya.
 
