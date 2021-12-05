@@ -47,6 +47,8 @@ Jumlah Host pada Fukurou adalah 200 host
 | H | GUANHAO | 10.38.4.1 | 255.255.254.0	 | /23 |
 | H | Fukurou | 10.38.4.2 | 255.255.254.0	 |  |
 
+![143670070-31d86437-7ca2-4b4d-bf9e-29a86d5d79cb](https://user-images.githubusercontent.com/61174498/144738309-3db9fcf5-5aa3-4d9e-9c24-b40f1885a39a.png)
+
 ### CONFIG NODE
 
 #### FOOSHA
@@ -119,6 +121,8 @@ iface eth3 inet static
 ```
 auto eth0
 iface eth0 inet static
+#auto eth0
+#iface eth0 inet dhcp
 	address 10.38.7.2
 	netmask 255.255.255.128
 	gateway 10.38.7.1
@@ -146,6 +150,8 @@ iface eth0 inet static
 ```
 auto eth0
 iface eth0 inet static
+#auto eth0
+#iface eth0 inet dhcp
 	address 10.38.0.2
 	netmask 255.255.252.0
 	gateway 10.38.0.1
@@ -155,6 +161,8 @@ iface eth0 inet static
 ```
 auto eth0
 iface eth0 inet static
+#auto eth0
+#iface eth0 inet dhcp
 	address 10.38.4.2
 	netmask 255.255.254.0
 	gateway 10.38.4.1
@@ -182,6 +190,8 @@ iface eth0 inet static
 ```
 auto eth0
 iface eth0 inet static
+#auto eth0
+#iface eth0 inet dhcp
 	address 10.38.6.2
 	netmask 255.255.255.0
 	gateway 10.38.6.2
@@ -219,6 +229,156 @@ route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.38.7.149
 ```
 
 ## D. Tugas berikutnya adalah memberikan ip pada subnet Blueno, Cipher, Fukurou, dan Elena secara dinamis menggunakan bantuan DHCP server. Kemudian kalian ingat bahwa kalian harus setting DHCP Relay pada router yang menghubungkannya.
+
+### Doriki (DNS Server)
+
+##### nano config.sh
+```
+# !/bin/sh
+
+apt-get update
+apt-get install bind9 -y
+```
+
+### Jipangu (DHCP Server)
+
+##### nano config.sh
+```
+# !/bin/sh
+
+apt-get update
+apt-get install isc-dhcp-server -y
+```
+
+##### nano isc-dhcp-server
+```
+INTERFACES="eth0"
+```
+
+### Foosha (DHCP Relay)
+
+##### nano config.sh
+```
+# !/bin/sh
+
+apt-get update
+
+```
+
+##### nano /etc/default/isc-dhcp-relay
+```
+# What servers should the DHCP relay forward requests to?
+SERVERS="10.38.7.131"
+
+# On what interfaces should the DHCP relay (dhrelay) serve DHCP requests?
+INTERFACES="eth1 eth2"
+
+# Additional options that are passed to the DHCP relay daemon?
+OPTIONS=""
+```
+
+### Water7 (DHCP Relay)
+
+##### nano config.sh
+```
+# !/bin/sh
+
+apt-get update
+apt-get install isc-dhcp-relay -y
+
+service isc-dhcp-relay start
+```
+
+##### nano /etc/default/isc-dhcp-relay
+```
+# What servers should the DHCP relay forward requests to?
+SERVERS="10.38.7.131"
+
+# On what interfaces should the DHCP relay (dhrelay) serve DHCP requests?
+INTERFACES="eth1 eth2 eth3"
+
+# Additional options that are passed to the DHCP relay daemon?
+OPTIONS=""
+```
+
+### Guanhao (DHCP Relay)
+
+##### nano config.sh
+```
+# !/bin/sh
+
+apt-get update
+apt-get install isc-dhcp-relay -y
+
+service isc-dhcp-relay start
+```
+
+##### nano /etc/default/isc-dhcp-relay
+```
+# What servers should the DHCP relay forward requests to?
+SERVERS="10.38.7.131"
+
+# On what interfaces should the DHCP relay (dhrelay) serve DHCP requests?
+INTERFACES="eth1 eth2 eth3"
+
+# Additional options that are passed to the DHCP relay daemon?
+OPTIONS=""
+```
+
+### Maingate (Web Server)
+
+##### nano config.sh
+```
+# !/bin/sh
+
+apt-get update
+apt-get install isc-dhcp-relay -y
+
+service isc-dhcp-relay start
+```
+
+### Jorge (Web Server)
+
+##### nano config.sh
+```
+# !/bin/sh
+
+apt-get update
+```
+
+### Blueno (Client)
+
+#### All
+
+Config ditambah:
+```
+auto eth0
+iface eth0 inet dhcp
+```
+
+##### nano config.sh
+```
+# !/bin/sh
+
+```
+
+### Cipher
+```
+# !/bin/sh
+
+```
+
+### Fukurou
+```
+# !/bin/sh
+
+```
+
+### Elena
+```
+# !/bin/sh
+
+```
 
 ## 1. Agar topologi yang kalian buat dapat mengakses keluar, kalian diminta untuk mengkonfigurasi Foosha menggunakan iptables, tetapi Luffy tidak ingin menggunakan MASQUERADE.
 
