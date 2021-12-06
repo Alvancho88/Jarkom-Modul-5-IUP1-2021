@@ -228,6 +228,23 @@ route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.38.7.145
 route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.38.7.149
 ```
 
+#### nano ./.bashrc
+```
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 10.38.0.0/16
+/root/config.sh
+echo "nameserver 10.38.122.1" > /etc/resolv.conf
+```
+
+Routing Berhasil
+
+![Screenshot (10429)](https://user-images.githubusercontent.com/61174498/144785902-2fa10fff-9a20-4f21-baad-8244dea5510b.png)
+
+![Screenshot (10430)](https://user-images.githubusercontent.com/61174498/144785909-d48b9a9e-bbaf-4fa2-9ed3-16e5a2222f92.png)
+
+![Screenshot (10432)](https://user-images.githubusercontent.com/61174498/144785915-5f4d99b3-a2e3-4844-8e3e-c8c56308a889.png)
+
+![Screenshot (10436)](https://user-images.githubusercontent.com/61174498/144785919-a8feda84-7624-4c68-9f3a-08fe13ba2b78.png)
+
 ## D. Tugas berikutnya adalah memberikan ip pada subnet Blueno, Cipher, Fukurou, dan Elena secara dinamis menggunakan bantuan DHCP server. Kemudian kalian ingat bahwa kalian harus setting DHCP Relay pada router yang menghubungkannya.
 
 ### Doriki (DNS Server)
