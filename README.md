@@ -314,9 +314,24 @@ subnet 10.38.6.0 netmask 255.255.255.0 {
     max-lease-time 7200;
 }
 
-# Routing dari Jipangu ke router
+# Routing dari Jipangu ke router Water7
 subnet 10.38.7.128 netmask 255.255.255.248 {
         option routers 10.38.7.129;
+}
+
+# Routing dari Jipangu ke router Guanhao
+subnet 10.38.7.136 netmask 255.255.255.248 {
+        option routers 10.38.7.137;
+}
+
+# Routing dari Jipangu ke router Foosha
+subnet 10.38.7.144 netmask 255.255.255.252 {
+        option routers 10.38.7.145;
+}
+
+# Routing dari Foosha ke Guanhao
+subnet 10.38.7.148 netmask 255.255.255.252 {
+        option routers 10.38.7.149;
 }
 
 # Water7
@@ -342,6 +357,9 @@ host FOOSHA {
 # !/bin/sh
 
 apt-get update
+apt-get install isc-dhcp-relay -y
+
+service isc-dhcp-relay start
 
 ```
 
@@ -477,6 +495,8 @@ iptables -t nat -A POSTROUTING -s 10.38.0.0/21 -o eth0 -j SNAT --to-source 192.1
 echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
+
+
 ## 2. Kalian diminta untuk mendrop semua akses HTTP dari luar Topologi kalian pada server yang memiliki ip DHCP dan DNS Server demi menjaga keamanan.
 
 nano config.sh on Foosha
@@ -539,6 +559,9 @@ Sabtu
 date -s "13 NOV 2021 09:00:00" -> gabisa
 date -s "13 NOV 2021 01:00:00" -> gabisa
 ```
+
+![Screenshot (10485)](https://user-images.githubusercontent.com/61174498/144872985-e824fd2b-f6b2-4763-953f-b90f938b75e8.png)
+
 
 ## 5. Akses dari subnet Elena dan Fukuro hanya diperbolehkan pada pukul 15.01 hingga pukul 06.59 setiap harinya.
 
