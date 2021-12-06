@@ -26,6 +26,8 @@ Jumlah Host pada Fukurou adalah 200 host
 
 ![Screenshot (10414)](https://user-images.githubusercontent.com/61174498/144734639-19c46d59-be52-4bcb-8175-d2b111b67827.png)
 
+![Pohon IP VLSM Modul 5 Aldi](https://user-images.githubusercontent.com/61174498/144890817-62f6dc20-e819-4e73-b818-eb4c57f1475e.png)
+
 | Subnet | Node | IP | Subnet Mask | Length |
 | --- | --- | --- | --- | --- |
 | A | WATER7 | 10.38.7.1 | 255.255.255.128 | /25 |
