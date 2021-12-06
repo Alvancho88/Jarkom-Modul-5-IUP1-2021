@@ -44,8 +44,8 @@ Jumlah Host pada Fukurou adalah 200 host
 | G | GUANHAO | 10.38.7.137 | 255.255.255.248 | /29 |
 | G | Jorge | 10.38.7.138 | 255.255.255.248 |  |
 | G | Maingaete | 10.38.7.139 | 255.255.255.248 |  |
-| H | GUANHAO | 10.38.4.1 | 255.255.254.0	 | /23 |
-| H | Fukurou | 10.38.4.2 | 255.255.254.0	 |  |
+| H | GUANHAO | 10.38.4.1 | 255.255.254.0 | /23 |
+| H | Fukurou | 10.38.4.2 | 255.255.254.0 |  |
 
 ![143670070-31d86437-7ca2-4b4d-bf9e-29a86d5d79cb](https://user-images.githubusercontent.com/61174498/144738309-3db9fcf5-5aa3-4d9e-9c24-b40f1885a39a.png)
 
@@ -53,8 +53,12 @@ Jumlah Host pada Fukurou adalah 200 host
 
 #### FOOSHA
 ```
+auto lo
+iface lo inet loopback
+
 auto eth0
 iface eth0 inet dhcp
+hwaddress ether 5e:0d:2e:c6:9b:9a
 
 auto eth1
 iface eth1 inet static
@@ -69,6 +73,9 @@ iface eth2 inet static
 
 #### WATER7
 ```
+auto lo
+iface lo inet loopback
+
 auto eth0
 iface eth0 inet static
 	address 10.38.7.146
@@ -94,6 +101,9 @@ iface eth3 inet static
 
 #### GUANHAO
 ```
+auto lo
+iface lo inet loopback
+
 auto eth0
 iface eth0 inet static
 	address 10.38.7.150
@@ -107,14 +117,14 @@ iface eth1 inet static
   
 auto eth2
 iface eth2 inet static
-	address 10.38.7.137
-	netmask 255.255.255.248
+  address 10.38.7.137
+  netmask 255.255.255.248
 
 
 auto eth3
 iface eth3 inet static
-	address 10.38.4.1
-	netmask 255.255.254.0
+  address 10.38.4.1
+  netmask 255.255.254.0
 ```
 
 #### Blueno
@@ -485,9 +495,12 @@ nano config.sh on Foosha
 iptables -t nat -A POSTROUTING -s 10.38.0.0/21 -o eth0 -j SNAT --to-source 192.168.122.98
 ```
 
+Yang Butuh Update (Water7, Doriki, Jipangu, dan Guanhao)
 ```
 echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
+
+Test dengan ping
 
 ![Screenshot (10472)](https://user-images.githubusercontent.com/61174498/144881484-5977bce3-150b-418f-934f-bb63d9de58dd.png)
 
@@ -512,6 +525,7 @@ iptables -A INPUT -s 10.38.6.0/24 -j DROP
 iptables -A INPUT -p tcp --dport 80 -j DROP
 ```
 
+Test
 ```
 nmap 10.38.7.131
 ```
@@ -627,3 +641,6 @@ unset http_proxy
 ps aux | grep ping
 kill -9 [pid]
 ```
+
+Problem:
+1.)
