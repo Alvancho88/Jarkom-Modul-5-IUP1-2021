@@ -528,10 +528,10 @@ Selain itu di reject
 ## 6. Karena kita memiliki 2 Web Server, Luffy ingin Guanhao disetting sehingga setiap request dari client yang mengakses DNS Server akan didistribusikan secara bergantian pada Jorge dan Maingate
 
 ```
-iptables -t nat -A PREROUTING -p tcp -d 10.151.73.50 -m statistic --mode nth --every 2 --packet 0 -j DNAT --to-destination 192.168.0.11:80
-iptables -t nat -A PREROUTING -p tcp -d 10.151.73.50 -j DNAT --to-destination 192.168.0.10:80
-iptables -t nat -A POSTROUTING -p tcp -d 192.168.0.11 --dport 80 -j SNAT --to-source 10.151.73.50
-iptables -t nat -A POSTROUTING -p tcp -d 192.168.0.10 --dport 80 -j SNAT --to-source 10.151.73.50
+iptables -t nat -A PREROUTING -p tcp -d 10.38.7.130 -m statistic --mode nth --every 2 --packet 0 -j DNAT --to-destination 10.38.7.138:80
+iptables -t nat -A PREROUTING -p tcp -d 10.38.7.130 -j DNAT --to-destination 10.38.7.139:80
+iptables -t nat -A POSTROUTING -p tcp -d 10.38.7.138 --dport 80 -j SNAT --to-source 10.38.7.130
+iptables -t nat -A POSTROUTING -p tcp -d 10.38.7.139 --dport 80 -j SNAT --to-source 10.38.7.130
 ```
 
 Luffy berterima kasih pada kalian karena telah membantunya. Luffy juga mengingatkan agar semua aturan iptables harus disimpan pada sistem atau paling tidak kalian menyediakan script sebagai backup
