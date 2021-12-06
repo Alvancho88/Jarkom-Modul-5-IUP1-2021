@@ -63,8 +63,8 @@ iface eth1 inet static
 
 auto eth2
 iface eth2 inet static
-address 10.38.7.149
-netmask 255.255.255.252
+	address 10.38.7.149
+	netmask 255.255.255.252
 ```
 
 #### WATER7
@@ -73,7 +73,7 @@ auto eth0
 iface eth0 inet static
 	address 10.38.7.146
 	netmask 255.255.255.252
-  gateway 10.38.7.145
+  	gateway 10.38.7.145
   
 auto eth1
 iface eth1 inet static
@@ -98,7 +98,7 @@ auto eth0
 iface eth0 inet static
 	address 10.38.7.150
 	netmask 255.255.255.252
-  gateway 10.38.7.149
+  	gateway 10.38.7.149
   
 auto eth1
 iface eth1 inet static
@@ -107,14 +107,14 @@ iface eth1 inet static
   
 auto eth2
 iface eth2 inet static
-  address 10.38.7.137
-  netmask 255.255.255.248
+	address 10.38.7.137
+	netmask 255.255.255.248
 
 
 auto eth3
 iface eth3 inet static
-  address 10.38.4.1
-  netmask 255.255.254.0
+	address 10.38.4.1
+	netmask 255.255.254.0
 ```
 
 #### Blueno
