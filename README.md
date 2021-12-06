@@ -314,15 +314,20 @@ subnet 10.38.6.0 netmask 255.255.255.0 {
     max-lease-time 7200;
 }
 
-# Water7
-subnet 10.38.7.144 netmask 255.255.255.252 {
-        option routers 10.38.7.145;
+# Routing dari Jipangu ke router
+subnet 10.38.7.129 netmask 255.255.255.248 {
+        option routers 10.38.7.131;
 }
 
+# Water7
+#subnet 10.38.7.144 netmask 255.255.255.252 {
+#        option routers 10.38.7.145;
+#}
+
 # Guanhao
-subnet 10.38.7.148 netmask 255.255.255.252 {
-        option routers 10.38.7.149;
-}
+#subnet 10.38.7.148 netmask 255.255.255.252 {
+#        option routers 10.38.7.149;
+#}
 
 #host Skypie {
 #    hardware ethernet 66:f9:90:6c:ae:ae;
@@ -330,7 +335,7 @@ subnet 10.38.7.148 netmask 255.255.255.252 {
 #}
 ```
 
-### Foosha (DHCP Relay)
+### [Redacted] Foosha (DHCP Relay)
 
 ##### nano config.sh
 ```
@@ -457,21 +462,73 @@ iface eth0 inet dhcp
 
 ## 1. Agar topologi yang kalian buat dapat mengakses keluar, kalian diminta untuk mengkonfigurasi Foosha menggunakan iptables, tetapi Luffy tidak ingin menggunakan MASQUERADE.
 
+nano config.sh on Foosha
+```
+iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to 10.151.72.26
+
+iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to 10.38.0.0/16
+
+iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to 10.38.122.1
+
+iptables -t nat -A POSTROUTING -s 10.38.0.0/21 -o eth0 -j SNAT --to-source 10.38.0.1
+```
+
+```
+echo nameserver 192.168.122.1 > /etc/resolv.conf
+```
+
 ## 2. Kalian diminta untuk mendrop semua akses HTTP dari luar Topologi kalian pada server yang memiliki ip DHCP dan DNS Server demi menjaga keamanan.
+
+nano config.sh on Foosha
+```
+iptables -A FORWARD -p tcp --dport 22 -d 10.151.73.48/29 -i eth0 -j DROP
+```
+
+```
+# doriki DNS
+iptables -A INPUT -s 192.200.7.130 -j DROP
+# subnet a2, a3, a6, a7
+iptables -A INPUT -s 192.200.7.0/25 -j DROP
+iptables -A INPUT -s 192.200.0.0/22 -j DROP
+iptables -A INPUT -s 192.200.4.0/23 -j DROP
+iptables -A INPUT -s 192.200.76.0/24 -j DROP
+```
 
 ## 3. Karena kelompok kalian maksimal terdiri dari 3 orang. Luffy meminta kalian untuk membatasi DHCP dan DNS Server hanya boleh menerima maksimal 3 koneksi ICMP secara bersamaan menggunakan iptables, selebihnya didrop.
 
-## Kemudian kalian diminta untuk membatasi akses ke Doriki yang berasal dari subnet Blueno, Cipher, Elena dan Fukuro dengan beraturan sebagai berikut
+nano config.sh on Jipangu and Doriki
+```
+iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --connlimit-mask 0 -j DROP
+```
+
+Kemudian kalian diminta untuk membatasi akses ke Doriki yang berasal dari subnet Blueno, Cipher, Elena dan Fukuro dengan beraturan sebagai berikut
 
 ## 4. Akses dari subnet Blueno dan Cipher hanya diperbolehkan pada pukul 07.00 - 15.00 pada hari Senin sampai Kamis
 
+```
+iptables -A INPUT -s 192.168.1.0/24 -m time --timestart 07:00 --timestop 17:00 --weekdays Mon,Tue,Wed,Thu,Fri -j ACCEPT
+iptables -A INPUT -s 192.168.1.0/24 -m time --timestart 17:01 --timestop 06:59 -j REJECT
+iptables -A INPUT -s 192.168.1.0/24 -m time --timestart 07:00 --timestop 17:00 --weekdays Sat,Sun -j REJECT
+```
+
 ## 5. Akses dari subnet Elena dan Fukuro hanya diperbolehkan pada pukul 15.01 hingga pukul 06.59 setiap harinya.
 
-## Selain itu di reject
+```
+iptables -A INPUT -s 192.168.2.0/24 -m time --timestart 07:01 --timestop 16:59 -j REJECT
+```
+
+Selain itu di reject
 
 ## 6. Karena kita memiliki 2 Web Server, Luffy ingin Guanhao disetting sehingga setiap request dari client yang mengakses DNS Server akan didistribusikan secara bergantian pada Jorge dan Maingate
 
-### Luffy berterima kasih pada kalian karena telah membantunya. Luffy juga mengingatkan agar semua aturan iptables harus disimpan pada sistem atau paling tidak kalian menyediakan script sebagai backup
+```
+iptables -t nat -A PREROUTING -p tcp -d 10.151.73.50 -m statistic --mode nth --every 2 --packet 0 -j DNAT --to-destination 192.168.0.11:80
+iptables -t nat -A PREROUTING -p tcp -d 10.151.73.50 -j DNAT --to-destination 192.168.0.10:80
+iptables -t nat -A POSTROUTING -p tcp -d 192.168.0.11 --dport 80 -j SNAT --to-source 10.151.73.50
+iptables -t nat -A POSTROUTING -p tcp -d 192.168.0.10 --dport 80 -j SNAT --to-source 10.151.73.50
+```
+
+Luffy berterima kasih pada kalian karena telah membantunya. Luffy juga mengingatkan agar semua aturan iptables harus disimpan pada sistem atau paling tidak kalian menyediakan script sebagai backup
 
 
 
