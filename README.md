@@ -482,12 +482,6 @@ iface eth0 inet dhcp
 
 nano config.sh on Foosha
 ```
-iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to 10.151.72.26
-
-iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to 10.38.0.0/16
-
-iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to 10.38.122.1
-
 iptables -t nat -A POSTROUTING -s 10.38.0.0/21 -o eth0 -j SNAT --to-source 192.168.122.98
 ```
 
@@ -495,7 +489,7 @@ iptables -t nat -A POSTROUTING -s 10.38.0.0/21 -o eth0 -j SNAT --to-source 192.1
 echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
-
+![Screenshot (10472)](https://user-images.githubusercontent.com/61174498/144881484-5977bce3-150b-418f-934f-bb63d9de58dd.png)
 
 ## 2. Kalian diminta untuk mendrop semua akses HTTP dari luar Topologi kalian pada server yang memiliki ip DHCP dan DNS Server demi menjaga keamanan.
 
@@ -522,12 +516,24 @@ iptables -A INPUT -p tcp --dport 80 -j DROP
 nmap 10.38.7.131
 ```
 
+![Screenshot (10474)](https://user-images.githubusercontent.com/61174498/144881591-e41f907b-b39b-4e58-bc1d-dfd6fc43a3d0.png)
+
+
 ## 3. Karena kelompok kalian maksimal terdiri dari 3 orang. Luffy meminta kalian untuk membatasi DHCP dan DNS Server hanya boleh menerima maksimal 3 koneksi ICMP secara bersamaan menggunakan iptables, selebihnya didrop.
 
 nano config.sh on Jipangu and Doriki
 ```
 iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --connlimit-mask 0 -j DROP
 ```
+
+![Screenshot (10475)](https://user-images.githubusercontent.com/61174498/144881765-508d6279-c7e6-4e37-b840-db83df170c4d.png)
+
+![Screenshot (10476)](https://user-images.githubusercontent.com/61174498/144881780-6abbbb49-9ff7-464c-ac2e-4a915e6069e4.png)
+
+![Screenshot (10477)](https://user-images.githubusercontent.com/61174498/144881810-09f5812d-eeaf-4350-b3f3-a3981aea7651.png)
+
+![Screenshot (10478)](https://user-images.githubusercontent.com/61174498/144881826-16417fb8-bca1-443f-a502-eb0f7d2058c9.png)
+
 
 Kemudian kalian diminta untuk membatasi akses ke Doriki yang berasal dari subnet Blueno, Cipher, Elena dan Fukuro dengan beraturan sebagai berikut
 
@@ -571,6 +577,9 @@ iptables -A INPUT -s 10.38.6.0/24 -m time --timestart 15:01 --timestop 06:59 -j 
 iptables -A INPUT -s 10.38.4.0/23 -m time --timestart 15:01 --timestop 06:59 -j REJECT
 ```
 
+![Screenshot (10485)](https://user-images.githubusercontent.com/61174498/144882027-4fb9b445-4b3f-4641-9c76-55f8d2ae1668.png)
+
+
 Selain itu di reject
 
 ## 6. Karena kita memiliki 2 Web Server, Luffy ingin Guanhao disetting sehingga setiap request dari client yang mengakses DNS Server akan didistribusikan secara bergantian pada Jorge dan Maingate
@@ -583,11 +592,6 @@ iptables -t nat -A POSTROUTING -p tcp -d 10.38.7.139 --dport 80 -j SNAT --to-sou
 ```
 
 Luffy berterima kasih pada kalian karena telah membantunya. Luffy juga mengingatkan agar semua aturan iptables harus disimpan pada sistem atau paling tidak kalian menyediakan script sebagai backup
-
-
-
-
-
 
 
 ### Config Penting
