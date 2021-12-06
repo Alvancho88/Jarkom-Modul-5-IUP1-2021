@@ -315,8 +315,8 @@ subnet 10.38.6.0 netmask 255.255.255.0 {
 }
 
 # Routing dari Jipangu ke router
-subnet 10.38.7.129 netmask 255.255.255.248 {
-        option routers 10.38.7.131;
+subnet 10.38.7.128 netmask 255.255.255.248 {
+        option routers 10.38.7.129;
 }
 
 # Water7
