@@ -643,5 +643,15 @@ ps aux | grep ping
 kill -9 [pid]
 ```
 
-Problem:
-1.)
+## Problem:
+
+1.) DHCP cannot ping to google.com
+
+2.) Elena and Fukurou DHCP Failed
+
+3.) Cannot test problem 5 and 6
+
+4.) Case sensitive
+
+5.) Config sensitive
+
