@@ -481,17 +481,17 @@ echo nameserver 192.168.122.1 > /etc/resolv.conf
 
 nano config.sh on Foosha
 ```
-iptables -A FORWARD -p tcp --dport 22 -d 10.151.73.48/29 -i eth0 -j DROP
+iptables -A FORWARD -p tcp --dport 22 -d 10.38.7.128/29 -i eth0 -j DROP
 ```
 
 ```
 # doriki DNS
-iptables -A INPUT -s 192.200.7.130 -j DROP
+iptables -A INPUT -s 10.38.7.130 -j DROP
 # subnet a2, a3, a6, a7
-iptables -A INPUT -s 192.200.7.0/25 -j DROP
-iptables -A INPUT -s 192.200.0.0/22 -j DROP
-iptables -A INPUT -s 192.200.4.0/23 -j DROP
-iptables -A INPUT -s 192.200.76.0/24 -j DROP
+iptables -A INPUT -s 10.38.7.0/25 -j DROP
+iptables -A INPUT -s 10.38.0.0/22 -j DROP
+iptables -A INPUT -s 10.38.4.0/23 -j DROP
+iptables -A INPUT -s 10.38.76.0/24 -j DROP
 ```
 
 ## 3. Karena kelompok kalian maksimal terdiri dari 3 orang. Luffy meminta kalian untuk membatasi DHCP dan DNS Server hanya boleh menerima maksimal 3 koneksi ICMP secara bersamaan menggunakan iptables, selebihnya didrop.
@@ -506,15 +506,21 @@ Kemudian kalian diminta untuk membatasi akses ke Doriki yang berasal dari subnet
 ## 4. Akses dari subnet Blueno dan Cipher hanya diperbolehkan pada pukul 07.00 - 15.00 pada hari Senin sampai Kamis
 
 ```
-iptables -A INPUT -s 192.168.1.0/24 -m time --timestart 07:00 --timestop 17:00 --weekdays Mon,Tue,Wed,Thu,Fri -j ACCEPT
-iptables -A INPUT -s 192.168.1.0/24 -m time --timestart 17:01 --timestop 06:59 -j REJECT
-iptables -A INPUT -s 192.168.1.0/24 -m time --timestart 07:00 --timestop 17:00 --weekdays Sat,Sun -j REJECT
+iptables -A INPUT -s 10.38.7.0/25 -m time --timestart 07:00 --timestop 15:00 --weekdays Mon,Tue,Wed,Thu -j ACCEPT
+iptables -A INPUT -s 10.38.7.0/25 -m time --timestart 15:01 --timestop 06:59 -j REJECT
+iptables -A INPUT -s 10.38.7.0/25 -m time --timestart 07:00 --timestop 15:00 --weekdays Fri,Sat,Sun -j REJECT
+
+iptables -A INPUT -s 10.38.0.0/22 -m time --timestart 07:00 --timestop 15:00 --weekdays Mon,Tue,Wed,Thu -j ACCEPT
+iptables -A INPUT -s 10.38.0.0/22 -m time --timestart 15:01 --timestop 06:59 -j REJECT
+iptables -A INPUT -s 10.38.0.0/22 -m time --timestart 07:00 --timestop 15:00 --weekdays Fri,Sat,Sun -j REJECT
 ```
 
 ## 5. Akses dari subnet Elena dan Fukuro hanya diperbolehkan pada pukul 15.01 hingga pukul 06.59 setiap harinya.
 
 ```
-iptables -A INPUT -s 192.168.2.0/24 -m time --timestart 07:01 --timestop 16:59 -j REJECT
+iptables -A INPUT -s 10.38.6.0/24 -m time --timestart 15:01 --timestop 06:59 -j REJECT
+
+iptables -A INPUT -s 10.38.4.0/23 -m time --timestart 15:01 --timestop 06:59 -j REJECT
 ```
 
 Selain itu di reject
