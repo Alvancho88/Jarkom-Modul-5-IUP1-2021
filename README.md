@@ -329,10 +329,10 @@ subnet 10.38.7.128 netmask 255.255.255.248 {
 #        option routers 10.38.7.149;
 #}
 
-#host Skypie {
-#    hardware ethernet 66:f9:90:6c:ae:ae;
-#    fixed-address 10.38.3.69;
-#}
+host FOOSHA {
+    hardware ethernet 5e:0d:2e:c6:9b:9a;
+    fixed-address 192.168.122.98;
+}
 ```
 
 ### [Redacted] Foosha (DHCP Relay)
@@ -470,7 +470,7 @@ iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to 10.38.0.0/16
 
 iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to 10.38.122.1
 
-iptables -t nat -A POSTROUTING -s 10.38.0.0/21 -o eth0 -j SNAT --to-source 10.38.0.1
+iptables -t nat -A POSTROUTING -s 10.38.0.0/21 -o eth0 -j SNAT --to-source 192.168.122.98
 ```
 
 ```
@@ -481,7 +481,7 @@ echo nameserver 192.168.122.1 > /etc/resolv.conf
 
 nano config.sh on Foosha
 ```
-iptables -A FORWARD -p tcp --dport 22 -d 10.38.7.128/29 -i eth0 -j DROP
+iptables -A FORWARD -p tcp --dport 80 -d 10.38.7.128/29 -i eth0 -j DROP
 ```
 
 ```
@@ -491,7 +491,15 @@ iptables -A INPUT -s 10.38.7.130 -j DROP
 iptables -A INPUT -s 10.38.7.0/25 -j DROP
 iptables -A INPUT -s 10.38.0.0/22 -j DROP
 iptables -A INPUT -s 10.38.4.0/23 -j DROP
-iptables -A INPUT -s 10.38.76.0/24 -j DROP
+iptables -A INPUT -s 10.38.6.0/24 -j DROP
+```
+
+```
+iptables -A INPUT -p tcp --dport 80 -j DROP
+```
+
+```
+nmap 10.38.7.131
 ```
 
 ## 3. Karena kelompok kalian maksimal terdiri dari 3 orang. Luffy meminta kalian untuk membatasi DHCP dan DNS Server hanya boleh menerima maksimal 3 koneksi ICMP secara bersamaan menggunakan iptables, selebihnya didrop.
@@ -542,3 +550,36 @@ Luffy berterima kasih pada kalian karena telah membantunya. Luffy juga mengingat
 
 
 
+### Config Penting
+
+```
+chmod +x config.sh
+
+Water7 & Guanhao
+service isc-dhcp-relay stop
+service isc-dhcp-relay start
+
+Doriki
+service bind9 restart
+service bind9 stop
+
+Jipangu
+service isc-dhcp-server start
+service isc-dhcp-server restart
+service isc-dhcp-server status
+dhcpd --version
+
+Maingate 
+service squid restart
+service squid status
+touch /etc/squid/passwd
+
+
+Client
+export http_proxy=http://10.38.2.3:5000
+env | grep -i proxy
+unset http_proxy
+
+ps aux | grep ping
+kill -9 [pid]
+```
