@@ -243,8 +243,6 @@ route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.38.7.149
 #### nano ./.bashrc
 ```
 iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 10.38.0.0/16
-/root/config.sh
-echo "nameserver 10.38.122.1" > /etc/resolv.conf
 ```
 
 Routing Berhasil
