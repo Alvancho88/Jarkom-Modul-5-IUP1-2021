@@ -527,6 +527,7 @@ iptables -A INPUT -p tcp --dport 80 -j DROP
 
 Test
 ```
+nmap 10.38.7.128
 nmap 10.38.7.131
 ```
 
