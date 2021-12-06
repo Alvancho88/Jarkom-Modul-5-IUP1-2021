@@ -274,32 +274,60 @@ INTERFACES="eth0"
 
 #### nano dhcpd.conf
 ```
+# Blueno
 subnet 10.38.7.0 netmask 255.255.255.128 {
-    range 10.38.7.10 10.38.7.100;
-    option routers 10.38.1.1;
-    option broadcast-address 10.38.1.255;
-    option domain-name-servers 10.38.2.2;
+    range 10.38.7.2 10.38.7.126;
+    option routers 10.38.7.1;
+    option broadcast-address 10.38.7.127;
+    option domain-name-servers 10.38.7.130;
     default-lease-time 360;
     max-lease-time 7200;
 }
 
-subnet 10.38.3.0 netmask 255.255.255.0 {
-    range 10.38.3.30 10.38.3.50;
-    option routers 10.38.3.1;
+# Cipher
+subnet 10.38.0.0 netmask 255.255.252.0	 {
+    range 10.38.0.2 10.38.3.254;
+    option routers 10.38.0.1;
     option broadcast-address 10.38.3.255;
-    option domain-name-servers 10.38.2.2;
+    option domain-name-servers 10.38.7.130;
     default-lease-time 720;
     max-lease-time 7200;
 }
 
-subnet 10.38.2.0 netmask 255.255.255.0 {
-        option routers 10.38.2.1;
+# Fukurou
+subnet 10.38.4.0 netmask 255.255.254.0 {
+    range 10.38.4.2 10.38.5.254;
+    option routers 10.38.4.1;
+    option broadcast-address 10.38.5.255;
+    option domain-name-servers 10.38.7.130;
+    default-lease-time 720;
+    max-lease-time 7200;
 }
 
-host Skypie {
-    hardware ethernet 66:f9:90:6c:ae:ae;
-    fixed-address 10.38.3.69;
+# Elena
+subnet 10.38.6.0 netmask 255.255.255.0 {
+    range 10.38.6.2 10.38.6.254;
+    option routers 10.38.6.1;
+    option broadcast-address 10.38.6.255;
+    option domain-name-servers 10.38.7.130;
+    default-lease-time 720;
+    max-lease-time 7200;
 }
+
+# Water7
+subnet 10.38.7.144 netmask 255.255.255.252 {
+        option routers 10.38.7.145;
+}
+
+# Guanhao
+subnet 10.38.7.148 netmask 255.255.255.252 {
+        option routers 10.38.7.149;
+}
+
+#host Skypie {
+#    hardware ethernet 66:f9:90:6c:ae:ae;
+#    fixed-address 10.38.3.69;
+#}
 ```
 
 ### Foosha (DHCP Relay)
