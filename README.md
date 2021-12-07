@@ -1,6 +1,11 @@
 # Jarkom-Modul-5-IUP1-2021
 
-Setelah kalian mempelajari semua modul yang telah diberikan, Luffy ingin meminta bantuan untuk terakhir kalinya kepada kalian. Dan kalian dengan senang hati mau membantu Luffy.
+## Group Member Name:
+1. (05111942000010) Agustinus Aldi Irawan
+2. (05111942000017) Juan Carlos Tepanus Pardosi
+3. (05111942000028) Salma Izzatul Islam
+
+#### Setelah kalian mempelajari semua modul yang telah diberikan, Luffy ingin meminta bantuan untuk terakhir kalinya kepada kalian. Dan kalian dengan senang hati mau membantu Luffy.
 
 ## A. Tugas pertama kalian yaitu membuat topologi jaringan sesuai dengan rancangan yang diberikan Luffy dibawah ini:
 
