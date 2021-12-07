@@ -140,6 +140,7 @@ iface eth0 inet static
 	gateway 10.38.7.1
 ```
 
+
 #### Doriki
 ```
 auto eth0
